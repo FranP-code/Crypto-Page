@@ -1,14 +1,15 @@
 import Header from "./components/Header/Header";
 import styled from 'styled-components'
+import Cryptos from "./components/Cryptos/Cryptos";
 
 function App() {
 
   const Div = styled.div`
     
-    height: 100%;
+    /* height: 100%; */
 
     background: rgb(46,66,105);
-    background: linear-gradient(180deg, rgba(46,66,105,1) 0%, rgba(0,26,47,1) 100%);
+    background: linear-gradient(180deg, #557ac5 0%, #004a86 100%);
     
     .paths {
 
@@ -18,6 +19,8 @@ function App() {
       
       top: 0;
       left: 0;
+
+      z-index: 1;
 
       .path {
 
@@ -29,11 +32,11 @@ function App() {
         
         /* background: #ffffff45; */
         background: rgb(255,255,255);
-        background: linear-gradient(135deg, rgba(255,255,255,0.08727240896358546) 0%, rgba(46,66,105,0.07046568627450978) 100%);
+        background: linear-gradient(135deg, #ffffff4e 0%, #2e426965 100%);
 
         position: absolute;
 
-        &:nth-child(1) {
+        &.one {
 
           clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 
@@ -46,7 +49,7 @@ function App() {
           transform: rotate(14deg)
         }
 
-        &:nth-child(2) {
+        &.two {
           clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 
           clip-path: circle(50% at 50% 50%);
@@ -58,7 +61,7 @@ function App() {
           height: 170px; 
         }
 
-        &:nth-child(3) {
+        &.three {
 
           clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
           clip-path: circle(50% at 50% 50%);
@@ -71,7 +74,7 @@ function App() {
           height: 180px;
         }
 
-        &:nth-child(4) {
+        &.four {
 
           clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
           
@@ -84,7 +87,7 @@ function App() {
           height: 100px;
         }
 
-        &:nth-child(5) {
+        &.five {
 
           clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 
@@ -97,7 +100,7 @@ function App() {
           height: 80px;
         }
 
-        &:nth-child(6) {
+        &.six {
 
           clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 
@@ -110,7 +113,7 @@ function App() {
           height: 70px;
         }
 
-        &:nth-child(7) {
+        &.seven {
 
           clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 
@@ -123,11 +126,11 @@ function App() {
           height: 100px;
         }
 
-        &:nth-child(8) {
+        &.eight {
 
           clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
         
-          top: 100%;
+          top: 95%;
           left: 20vw;
           transform: rotate(40deg)
         }
@@ -138,16 +141,19 @@ function App() {
   return (
     <Div>
       <Header />
+
       <div className="paths">
-        <div className="path"></div>
-        <div className="path"></div>
-        <div className="path"></div>
-        <div className="path"></div>
-        <div className="path"></div>
-        <div className="path"></div>
-        <div className="path"></div>
-        <div className="path"></div>
+        <div className="path one"></div>
+        <div className="path two"></div>
+        <div className="path three"></div>
+        <div className="path four"></div>
+        <div className="path five"></div>
+        <div className="path six"></div>
+        <div className="path seven"></div>
+        <div className="path eight"></div>
       </div>
+
+      <Cryptos />
     </Div>
   );
 }
