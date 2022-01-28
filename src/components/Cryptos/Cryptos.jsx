@@ -5,7 +5,7 @@ import Crypto from './Crypto';
 
 import moment from 'moment';
 
-const Cryptos = () => {
+const Cryptos = ({setLoading}) => {
 
     const CryptosStyles = styled.div`
 
@@ -190,6 +190,8 @@ const Cryptos = () => {
             const actualDay = moment().format('DD-MM-YYYY')
             localStorage.setItem('lastDayPrices', actualDay)
         }
+
+
     
     }, [cryptosPrices])
 
@@ -201,7 +203,18 @@ const Cryptos = () => {
                         <Grid container columnSpacing={4} rowSpacing={6} className='grid'>
                             {
                                 cryptosList.map((crypto, index) => (
-                                    <Crypto CryptoStyles={CryptoStyles} data={crypto} cryptoPrices={cryptosPrices[index]} key={crypto.id} dates={dates}></Crypto>
+                                    <Crypto
+                                        CryptoStyles={CryptoStyles}
+                                        data={crypto}
+                                        cryptoPrices={cryptosPrices[index]}
+                                        key={crypto.id}
+                                        dates={dates}
+
+                                        index={index}
+                                        cryptoListLength={cryptosList.length}
+
+                                        setLoading={setLoading}
+                                    />                                    
                                 ))
                             }
                                 {/* <Crypto CryptoStyles={CryptoStyles} />

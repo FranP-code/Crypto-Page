@@ -6,7 +6,7 @@ import { Chart as ChartJS } from 'chart.js/auto'
 import { Chart, Line }            from 'react-chartjs-2' //WTF https://stackoverflow.com/questions/67727603/error-category-is-not-a-registered-scale
 import Cookies from 'js-cookie';
 
-const Crypto = ({CryptoStyles, data, cryptoPrices, dates}) => {
+const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLength, setLoading}) => {
 
   const plugin = {
     id: 'custom_canvas_background_color',
@@ -22,7 +22,7 @@ const Crypto = ({CryptoStyles, data, cryptoPrices, dates}) => {
 
   React.useEffect(() => {
 
-    console.log(cryptoPrices[data.id].prices)
+    // console.log(cryptoPrices[data.id].prices)
 
     if (!cryptoPrices[data.id]) {
 
@@ -30,6 +30,9 @@ const Crypto = ({CryptoStyles, data, cryptoPrices, dates}) => {
       console.log(data)
       console.log(cryptoPrices)
     }
+
+    if (index === cryptoListLength - 1){ setLoading(false)  }
+
   }, [])
 
   return (
