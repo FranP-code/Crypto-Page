@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Card, CardContent, Grid, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Chart, Line }            from 'react-chartjs-2' //WTF https://stackoverflow.com/questions/67727603/error-category-is-not-a-registered-scale
+import Cookies from 'js-cookie';
 
-const Crypto = ({CryptoStyles}) => {
+const Crypto = ({CryptoStyles, data, cryptoPrices, dates}) => {
 
   const plugin = {
     id: 'custom_canvas_background_color',
@@ -19,6 +20,18 @@ const Crypto = ({CryptoStyles}) => {
     }
   }
 
+  React.useEffect(() => {
+
+    console.log(cryptoPrices[data.id].prices)
+
+    if (!cryptoPrices[data.id]) {
+
+      console.log('ERROR, PRICE ID IS DIFFERENT TO CRYPTO ID')
+      console.log(data)
+      console.log(cryptoPrices)
+    }
+  }, [])
+
   return (
     <>
       <CryptoStyles item md={4} sm={6} xs={12}>
@@ -26,25 +39,33 @@ const Crypto = ({CryptoStyles}) => {
           <CardContent
             className="container"  
           >
-            <Typography
-              variant="h4"
-              color="text.primary"
-              fontWeight="bold"
-              align="center"
-              padding="2vh 0px 0px 0px"
-              fontFamily="Raleway"
-              color="#fff"
-            >
-                Test - Bitcoin
-            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems: "center", paddingTop: "2vh"}}>
+              <Typography
+                variant="h4"
+                fontWeight="bold"
+                fontFamily="Raleway"
+                color="#fff"
+                height="10vh"
+                width="100%"
+                sx={{display: "flex", alignItems: "center"}}
+              >
+                  {data.name}
+              </Typography>
+              <CardMedia
+                component="img"
+                sx={{ width: "10vh", height: "10vh"}}
+                image={data.image}
+                alt={`${data.id} img`}
+                />
+            </Box>
             <Line
                 data={{
-                    labels: ['12-01', '13-01', '14-01', '15-01', '16-01', '17-01', '18-01', '19-01'],
+                    labels: dates,
                     label: false,
                     datasets: [
                         {
-                            data: [21, 51, 29, 50, 80, 70, 99, 1],
-                            pointRadius: 0,
+                            data: cryptoPrices[data.id].prices,
+                            // pointRadius: 0,
                             borderColor: "#fff"
                         }
                     ]
