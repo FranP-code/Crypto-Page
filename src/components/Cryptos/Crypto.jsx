@@ -5,6 +5,7 @@ import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/materi
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Chart, Line }            from 'react-chartjs-2' //WTF https://stackoverflow.com/questions/67727603/error-category-is-not-a-registered-scale
 import Cookies from 'js-cookie';
+import { borderRadius } from '@mui/system';
 
 const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLength, setLoading}) => {
 
@@ -19,6 +20,8 @@ const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLengt
       ctx.restore();
     }
   }
+
+  const [backgroundColor, setBackgroundColor] = useState("#ffffff0")
 
   React.useEffect(() => {
 
@@ -51,6 +54,7 @@ const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLengt
                 height="10vh"
                 width="100%"
                 sx={{display: "flex", alignItems: "center"}}
+                paddingRight="10px"
               >
                   {data.name}
               </Typography>
@@ -110,7 +114,9 @@ const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLengt
                     },
                 }}
                 className="line"
-                style={{backgroundColor: "#ffffff0"}}
+                style={{backgroundColor: backgroundColor, boxSizing: "content-box", transition: "all 0.4s ease-in-out", borderRadius: "3px"}}
+                onMouseEnter={() => setBackgroundColor("#ffffff1a")}
+                onMouseLeave={() => setBackgroundColor("transparent")} // https://stackoverflow.com/questions/8739665/is-background-colornone-valid-css
             />
             <Typography
               variant="h6"

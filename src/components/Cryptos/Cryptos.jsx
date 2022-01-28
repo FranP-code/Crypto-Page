@@ -32,7 +32,11 @@ const Cryptos = ({setLoading}) => {
 
         .card {
 
-            background: rgba( 78, 159, 255, 0) !important;
+            background: rgba( 78, 159, 255, 0);
+            backdrop-filter: blur( 14px );
+                -webkit-backdrop-filter: blur( 14px );
+
+            
         }
 
         .container {
@@ -44,6 +48,11 @@ const Cryptos = ({setLoading}) => {
             /* height: 80vh; */
             user-select: none;
             cursor: pointer;
+            transition: 0.25s ease-in-out;
+
+            :hover {
+                background: #00f7ff5e;
+            }
 
             .line {
 
@@ -189,10 +198,7 @@ const Cryptos = ({setLoading}) => {
             //Almacenate actual day on LocalStorage
             const actualDay = moment().format('DD-MM-YYYY')
             localStorage.setItem('lastDayPrices', actualDay)
-        }
-
-
-    
+        }    
     }, [cryptosPrices])
 
     return (
