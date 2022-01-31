@@ -4,11 +4,9 @@ import Background from '../Background/Background';
 import Cryptos from '../Cryptos/Cryptos';
 import Header from '../Header/Header';
 
-const Loading = () => {
+const Loading = ({loading, setLoading}) => {
 
-    const [loading, setLoading] = useState(true)
     const [loadingURL, setLoadingURL] = useState('https://i.ibb.co/Dwygw0t/Logo-reduced.png')
-    const [loadingCryptoName, setLoadingCryptoName] = useState('')
 
     const LoadingStyles = styled.div`
 
@@ -55,11 +53,11 @@ const Loading = () => {
 
         &.hidden {
 
-            animation: hiddeLoading 1.5s ease-in-out forwards;
+            animation: hiddeLoading 1s ease-in-out forwards;
         }
 
         @keyframes hiddeLoading {
-            0%, 50% {
+            0%{
                 transform: translate(0, 0%)
             }
             100% {

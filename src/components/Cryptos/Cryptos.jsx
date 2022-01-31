@@ -11,7 +11,7 @@ const Cryptos = ({setLoading, setLoadingURL, loading}) => {
 
         position: relative;
         
-        height: ${props => props.loading ? '1px' : 'auto'};
+        /* height: ${props => props.loading ? '1px' : 'auto'}; */
 
         z-index: 100;
 
@@ -53,7 +53,7 @@ const Cryptos = ({setLoading, setLoadingURL, loading}) => {
             transition: 0.25s ease-in-out;
 
             :hover {
-                background: #1900ff61;
+                background: #21202950;
             }
 
             .line {

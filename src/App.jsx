@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 
-import Header from "./components/Header/Header";
-
 import styled from 'styled-components'
-import Cryptos from "./components/Cryptos/Cryptos";
-import Background from './components/Background/Background';
 import Loading from './components/Loading/Loading';
 
 function App() {
@@ -42,10 +38,22 @@ function App() {
       }
   }`
 
+  const [loading, setLoading] = useState(true)
 
+  React.useEffect(() => {
+
+    if (loading) {
+
+      document.body.style.overflow = "hidden"
+    
+    } else {
+      
+      document.body.style.overflow = "visible"
+    }
+  }, [loading])
   return (
     <Div>
-      <Loading />
+      <Loading loading={loading} setLoading={setLoading}/>
     </Div>
   );
 }

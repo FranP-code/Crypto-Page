@@ -114,19 +114,14 @@ const Background = ({loading}) => {
 
     React.useEffect(() => {
 
-        if (loading) {
+      pathFunction()
 
-        return
-        }
-
-        pathFunction()
-
-    }, [loading])
+    }, [])
     
     
     return <>
         {
-          loading ? null : 
+           
             seriesOfPaths.map(serie => (
                 <div className="paths" style={{top: serie * 520 + "px"}}>
                   {
