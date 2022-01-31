@@ -126,11 +126,12 @@ const Background = ({loading}) => {
     
     return <>
         {
+          loading ? null : 
             seriesOfPaths.map(serie => (
                 <div className="paths" style={{top: serie * 520 + "px"}}>
                   {
       
-                pathsData.map(object => (
+                pathsData.map((object, index) => (
                   
                   <CustomPath
                     className="path"
@@ -146,6 +147,8 @@ const Background = ({loading}) => {
                     transform={object.transform}
       
                     serieNumber={serie}
+
+                    key={index}
                   />
                 ))
               }

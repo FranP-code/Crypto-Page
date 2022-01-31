@@ -5,11 +5,13 @@ import Crypto from './Crypto';
 
 import moment from 'moment';
 
-const Cryptos = ({setLoading}) => {
+const Cryptos = ({setLoading, setLoadingURL, loading}) => {
 
     const CryptosStyles = styled.div`
 
         position: relative;
+        
+        height: ${props => props.loading ? '1px' : 'auto'};
 
         z-index: 100;
 
@@ -51,7 +53,7 @@ const Cryptos = ({setLoading}) => {
             transition: 0.25s ease-in-out;
 
             :hover {
-                background: #00f7ff5e;
+                background: #1900ff61;
             }
 
             .line {
@@ -154,6 +156,8 @@ const Cryptos = ({setLoading}) => {
         } // Credits https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
           
         await asyncForEach(data, async (object) => {
+
+            setLoadingURL(object.image)
 
             let requestData = await getCryptoPrices(object)
             console.log(requestData)
