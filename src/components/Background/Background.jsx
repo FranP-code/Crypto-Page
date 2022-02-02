@@ -151,34 +151,36 @@ const Background = ({loading}) => {
         {
            
             seriesOfPaths.map(serie => (
-                <div className="paths" style={{top: serie * 520 + "px"}}>
+                <div
+                  className="paths"
+                  style={{top: serie * 520 + "px"}}
+                  key={serie}
+                >
                   {
       
-                pathsData.map((object, index) => (
-                  
-                  <CustomPath
-                    className="path"
-      
-                    top={object.top}
-                    left={object.left}
-      
-                    clipPath={object.clipPath}
-      
-                    width={object.width}
-                    height={object.height}
-      
-                    transform={object.transform}
-      
-                    serieNumber={serie}
+                  pathsData.map((object, index) => (
+                    
+                    <CustomPath
+                      className="path"
+        
+                      top={object.top}
+                      left={object.left}
+        
+                      clipPath={object.clipPath}
+        
+                      width={object.width}
+                      height={object.height}
+        
+                      transform={object.transform}
+        
+                      serieNumber={serie}
 
-                    key={index}
-                  />
-                ))
-              }
-            </div>
-      
-              ))
-            
+                      key={index}
+                    />
+                  ))
+                }
+            </div>    
+          ))
         }
     </BackgroundStyles> 
 };

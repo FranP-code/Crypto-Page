@@ -9,7 +9,7 @@ import { borderRadius } from '@mui/system';
 
 import { withRouter, useHistory } from 'react-router-dom';
 
-const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLength, setLoading}) => {
+const CryptoGalleryItem = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLength, setLoading, loading}) => {
 
   const history = useHistory()
 
@@ -49,7 +49,8 @@ const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLengt
         lg={4}
         md={6}
         sm={12}
-        onClick={() => history.push(`/crypto/${data.id}`)}
+        onClick={() => {if (!loading) history.push(`/crypto/${data.id}`)}}
+        style={{cursor: loading ? 'initial' : 'clicker'}}
       >
         <Card className="card">
           <CardContent
@@ -147,4 +148,4 @@ const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLengt
   )
 };
 
-export default withRouter(Crypto);
+export default withRouter(CryptoGalleryItem);

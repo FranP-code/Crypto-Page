@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import styled from 'styled-components';
-import Crypto from './CryptoGalleryItem';
+import CryptoGalleryItem from './CryptoGalleryItem';
 
 import moment from 'moment';
 
@@ -213,7 +213,7 @@ const Cryptos = ({setLoading, setLoadingURL, loading}) => {
                         <Grid container columnSpacing={4} rowSpacing={6} className='grid'>
                             {
                                 cryptosList.map((crypto, index) => (
-                                    <Crypto
+                                    <CryptoGalleryItem
                                         CryptoStyles={CryptoStyles}
                                         data={crypto}
                                         cryptoPrices={cryptosPrices[index]}
@@ -223,6 +223,7 @@ const Cryptos = ({setLoading, setLoadingURL, loading}) => {
                                         index={index}
                                         cryptoListLength={cryptosList.length}
 
+                                        loading={loading}
                                         setLoading={setLoading}
                                     />                                    
                                 ))

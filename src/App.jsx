@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import styled from 'styled-components'
-import Loading from './components/CryptoGalleryLoading/CryptoGalleryLoading';
+import CryptoGalleryLoading from './components/CryptoGalleryLoading/CryptoGalleryLoading';
 
 import {
   BrowserRouter as Router,
@@ -10,6 +10,9 @@ import {
   Link
 } from "react-router-dom";
 import Crypto from './components/Crypto/Crypto';
+import Header from './components/Header/Header';
+import Background from './components/Background/Background';
+import Cryptos from './components/CryptoGallery/CryptoGallery';
 
 function App() {
  
@@ -19,6 +22,7 @@ function App() {
   `
 
   const [loading, setLoading] = useState(true)
+  const [loadingURL, setLoadingURL] = useState('https://i.ibb.co/Dwygw0t/Logo-reduced.png')
 
   React.useEffect(() => {
 
@@ -46,7 +50,16 @@ function App() {
           <Crypto />
         </Route>
         <Route path="/">
-          <Loading loading={loading} setLoading={setLoading}/>
+          <CryptoGalleryLoading loading={loading} loadingURL={loadingURL} setLoading={setLoading}/>
+          <Header />
+            <Background
+                loading={loading}
+            />
+            <Cryptos
+                loading={loading}
+                setLoading={setLoading}
+                setLoadingURL={setLoadingURL}
+            />
         </Route>
       </Switch>
     </Router>

@@ -4,9 +4,7 @@ import Background from '../Background/Background';
 import Cryptos from '../CryptoGallery/CryptoGallery';
 import Header from '../Header/Header';
 
-const Loading = ({loading, setLoading}) => {
-
-    const [loadingURL, setLoadingURL] = useState('https://i.ibb.co/Dwygw0t/Logo-reduced.png')
+const CryptoGalleryLoading = ({loading, loadingURL}) => {
 
     const LoadingStyles = styled.div`
 
@@ -74,17 +72,8 @@ const Loading = ({loading, setLoading}) => {
                 <img src={loadingURL} alt="loading" />
                 <h2>Loading</h2>
             </LoadingStyles>
-            <Header />
-            <Background
-                loading={loading}
-            />
-            <Cryptos
-                loading={loading}
-                setLoading={setLoading}
-                setLoadingURL={setLoadingURL}
-            />
         </>
     )
 };
 
-export default Loading;
+export default CryptoGalleryLoading;
