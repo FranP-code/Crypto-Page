@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { CustomPath } from './CustomPath.styled';
 
 const Background = ({loading}) => {
@@ -97,6 +98,33 @@ const Background = ({loading}) => {
           transform: "rotate(40deg)"
         }
       ]
+
+    const BackgroundStyles = styled.div`
+      
+      height: 100%;
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      z-index: 1;
+
+      .path {
+
+        &::before {
+
+          content: "";
+          background: red;
+        }
+        
+        /* background: #ffffff45; */
+        background: rgb(255,255,255);
+        background: linear-gradient(135deg, #ffffff4e 0%, #2e426965 100%);
+
+        position: absolute;
+      }
+    `
     
 
     const pathFunction = () => {
@@ -119,7 +147,7 @@ const Background = ({loading}) => {
     }, [])
     
     
-    return <>
+    return <BackgroundStyles>
         {
            
             seriesOfPaths.map(serie => (
@@ -152,7 +180,7 @@ const Background = ({loading}) => {
               ))
             
         }
-    </> 
+    </BackgroundStyles> 
 };
 
 export default Background;

@@ -1,42 +1,22 @@
 import React, { useState } from 'react'
 
 import styled from 'styled-components'
-import Loading from './components/Loading/Loading';
+import Loading from './components/CryptoGalleryLoading/CryptoGalleryLoading';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Crypto from './components/Crypto/Crypto';
 
 function App() {
  
-  const Div = styled.div`
+  const GlobalStyles = styled.div`
     
-    /* height: 100%; */
-
-    background-image: radial-gradient( circle farthest-corner at 12.3% 19.3%,  rgba(85,88,218,1) 0%, rgba(95,209,249,1) 100.2% );
-    
-    .paths {
-
-      height: 100%;
-
-      position: absolute;
-      
-      top: 0;
-      left: 0;
-
-      z-index: 1;
-
-      .path {
-
-        &::before {
-
-          content: "";
-          background: red;
-        }
-        
-        /* background: #ffffff45; */
-        background: rgb(255,255,255);
-        background: linear-gradient(135deg, #ffffff4e 0%, #2e426965 100%);
-
-        position: absolute;
-      }
-  }`
+    background-image: radial-gradient( circle farthest-corner at 12.3% 19.3%,  rgba(85,88,218,1) 0%, rgba(95,209,249,1) 100.2% );  
+  `
 
   const [loading, setLoading] = useState(true)
 
@@ -47,14 +27,30 @@ function App() {
       document.body.style.overflow = "hidden"
     
     } else {
+
+      setTimeout(() => {
+        
+        document.body.style.overflow = "visible"
       
-      document.body.style.overflow = "visible"
-    }
+      }, 2000);
+      
+    } //https://stackoverflow.com/questions/39962757/prevent-scrolling-using-css-on-react-rendered-components
   }, [loading])
+
   return (
-    <Div>
-      <Loading loading={loading} setLoading={setLoading}/>
-    </Div>
+    <GlobalStyles>
+
+    <Router>
+      <Switch>
+        <Route path="/crypto/:cryptoID">
+          <Crypto />
+        </Route>
+        <Route path="/">
+          <Loading loading={loading} setLoading={setLoading}/>
+        </Route>
+      </Switch>
+    </Router>
+    </GlobalStyles>
   );
 }
 

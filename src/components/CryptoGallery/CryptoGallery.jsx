@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import styled from 'styled-components';
-import Crypto from './Crypto';
+import Crypto from './CryptoGalleryItem';
 
 import moment from 'moment';
 

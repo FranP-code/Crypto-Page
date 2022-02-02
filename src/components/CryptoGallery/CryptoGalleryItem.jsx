@@ -7,7 +7,11 @@ import { Chart, Line }            from 'react-chartjs-2' //WTF https://stackover
 import Cookies from 'js-cookie';
 import { borderRadius } from '@mui/system';
 
+import { withRouter, useHistory } from 'react-router-dom';
+
 const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLength, setLoading}) => {
+
+  const history = useHistory()
 
   const plugin = {
     id: 'custom_canvas_background_color',
@@ -40,7 +44,13 @@ const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLengt
 
   return (
     <>
-      <CryptoStyles item md={4} sm={6} xs={12}>
+      <CryptoStyles
+        item
+        lg={4}
+        md={6}
+        sm={12}
+        onClick={() => history.push(`/crypto/${data.id}`)}
+      >
         <Card className="card">
           <CardContent
             className="container"  
@@ -137,4 +147,4 @@ const Crypto = ({CryptoStyles, data, cryptoPrices, dates, index, cryptoListLengt
   )
 };
 
-export default Crypto;
+export default withRouter(Crypto);

@@ -1,12 +1,7 @@
-import {React, useState} from 'react';
 import styled from 'styled-components';
-import Background from '../Background/Background';
-import Cryptos from '../Cryptos/Cryptos';
-import Header from '../Header/Header';
+import React, {useState} from 'react';
 
-const Loading = ({loading, setLoading}) => {
-
-    const [loadingURL, setLoadingURL] = useState('https://i.ibb.co/Dwygw0t/Logo-reduced.png')
+const Loading = ({loading, loadingURL}) => {
 
     const LoadingStyles = styled.div`
 
@@ -53,11 +48,11 @@ const Loading = ({loading, setLoading}) => {
 
         &.hidden {
 
-            animation: hiddeLoading 1s ease-in-out forwards;
+            animation: hiddeLoading 2s ease-in-out forwards;
         }
 
         @keyframes hiddeLoading {
-            0%{
+            50%{
                 transform: translate(0, 0%)
             }
             100% {
@@ -66,24 +61,13 @@ const Loading = ({loading, setLoading}) => {
             }   
         }
     `
-
+    
     return (
-        <>
-            
-            <LoadingStyles className={loading ? null : 'hidden'}>
-                <img src={loadingURL} alt="loading" />
-                <h2>Loading</h2>
-            </LoadingStyles>
-            <Header />
-            <Background
-                loading={loading}
-            />
-            <Cryptos
-                loading={loading}
-                setLoading={setLoading}
-                setLoadingURL={setLoadingURL}
-            />
-        </>
+
+        <LoadingStyles className={loading ? null : 'hidden'}>
+            <img src={loadingURL} alt="loading" />
+            <h2>Loading</h2>
+        </LoadingStyles>
     )
 };
 
