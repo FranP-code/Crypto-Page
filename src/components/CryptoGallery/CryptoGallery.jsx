@@ -5,7 +5,7 @@ import CryptoGalleryItem from './CryptoGalleryItem';
 
 import moment from 'moment';
 
-const Cryptos = ({setLoading, setLoadingURL, loading}) => {
+const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
 
     const CryptosStyles = styled.div`
 
@@ -243,4 +243,4 @@ const Cryptos = ({setLoading, setLoadingURL, loading}) => {
         );
 };
 
-export default Cryptos;
+export default CryptoGallery;
