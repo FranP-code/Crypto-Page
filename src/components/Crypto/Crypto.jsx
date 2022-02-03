@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom'
 
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Chart, Line }            from 'react-chartjs-2' //WTF https://stackoverflow.com/questions/67727603/error-category-is-not-a-registered-scale
-import { Grid, Button, capitalize } from '@mui/material';
+import { Grid, Button, capitalize, Switch, FormControlLabel } from '@mui/material';
 import styled from 'styled-components';
 import CryptoPricesModule from './CryptoPricesModule';
 import CryptoButtonModule from './CryptoButtonModule';
@@ -112,6 +112,8 @@ const Crypto = () => {
     const [contentLoaded, setContentLoaded] = useState(false)
 
     const [lineDatesInterval, setLineDatesInterval] = useState('week')
+
+    const [linePoints, setLinePoints] = useState(true)
       
     const getCryptoData = async () => {
         
@@ -290,7 +292,8 @@ const Crypto = () => {
                                 datasets: [
                                     {
                                         data: cryptoPrices[lineDatesInterval],
-                                        borderColor: "#fff"
+                                        borderColor: "#fff",
+                                        pointRadius: (linePoints ? 4 : 0),
                                     }
                                 ]
                             }}
@@ -333,7 +336,7 @@ const Crypto = () => {
                             className='line'
                         />
                         <Box
-                            sx={{display: 'flex', justifyContent: "space-around", padding: {md: "1.5vh 13vw", xs: "1vh 13vw 5vh 13vw"}}}
+                            sx={{display: 'flex', justifyContent: "space-around", padding: {md: "1.5vh 4vw", xs: "1vh 13vw 5vh 13vw"}}}
                         >
                             {
                                 [
@@ -352,6 +355,20 @@ const Crypto = () => {
                                     />
                                 ))
                             }
+                            <FormControlLabel
+                                control={
+                                    <Switch
+                                        checked={linePoints}
+                                        defaultChecked={true}
+                                        onChange={() => {
+                                
+                                            setLinePoints(!linePoints)}}
+                                        color="secondary"
+                                    />
+                                }
+                                label="Line Points"
+                                sx={{color: "#fff"}}
+                            />
                         </Box>
                     </Grid>
                 </CryptoStyles>
