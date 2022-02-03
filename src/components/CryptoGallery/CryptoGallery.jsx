@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import CryptoGalleryItem from './CryptoGalleryItem';
 
 import moment from 'moment';
+import getCryptocurrencyData from './API calls/getCryptocurrencyData';
+import getCryptoPrices from './API calls/getCryptoPrices';
 
 const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
 
@@ -70,36 +72,7 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
     const [cryptosPrices, setCryptosPrices] = useState(false)
     const [cryptosList, setCryptosList] = useState(false)
 
-    const [dates, setDates] = useState([])
-
-    const getCryptocurrencyData = async () => {
-
-        try {
-            
-            let data = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=30&order=gecko_desc")
-            data = await data.json()
-
-            return data
-            
-        } catch (error) {
-            
-            console.log(error);
-        }
-    }
-
-    const getCryptoPrices = async (data) => {
-
-        try {
-          
-            let requestData = await fetch(`https://api.coingecko.com/api/v3/coins/${data.id}/market_chart?vs_currency=usd&days=6&interval=daily`)
-            requestData = await requestData.json()
-
-            return requestData.prices
-    
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    const [dates, setDates] = useState([])    
 
     const generateArrayOfDates = () => {
 
@@ -160,8 +133,8 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
 
 
             let objectResult = {}
-                objectResult[object.id] = {}
-                objectResult[object.id].prices = requestData
+            objectResult[object.id] = {}
+            objectResult[object.id].prices = requestData
             cryptoPricesCopy.push(objectResult)
         })
 
@@ -213,12 +186,6 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
                                     />                                    
                                 ))
                             }
-                                {/* <Crypto CryptoStyles={CryptoStyles} />
-                                <Crypto CryptoStyles={CryptoStyles} />
-                                <Crypto CryptoStyles={CryptoStyles} />
-                                <Crypto CryptoStyles={CryptoStyles} />
-                                <Crypto CryptoStyles={CryptoStyles} />
-                                <Crypto CryptoStyles={CryptoStyles} /> */}
                         </Grid>
                 </CryptosStyles>
             : null

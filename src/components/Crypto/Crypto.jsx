@@ -12,6 +12,10 @@ import CryptoButtonModule from './CryptoButtonModule';
 import { Box } from '@mui/system';
 import Loading from './Loading';
 
+import getCryptoData from './API calls/getCryptoData';
+import getCryptoPrice from './API calls/getCryptoPrice';
+import getDates from './API calls/getDates'
+
 const Crypto = () => {
 
     const CryptoStyles = styled(Grid)`
@@ -114,66 +118,16 @@ const Crypto = () => {
     const [lineDatesInterval, setLineDatesInterval] = useState('week')
 
     const [linePoints, setLinePoints] = useState(true)
-      
-    const getCryptoData = async () => {
-        
-        try {
-            
-            let today = moment().format('l').split('/')
-                today = `${today[1]}-${today[0]}-${today[2]}`
-
-            const requestData = await fetch(`https://api.coingecko.com/api/v3/coins/${cryptoID}/history?date=${today}`)
-            const data = await requestData.json()
-            return data
-        
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const getCryptoPrice = async (days) => {
-
-        if (typeof(days) === 'number') {
-
-            days -= 1
-        }
-
-        try {
-            
-            const requestData = await fetch(`https://api.coingecko.com/api/v3/coins/${cryptoID}/market_chart?vs_currency=usd&days=${days}&interval=daily`)
-            const data = await requestData.json()
-
-            return data.prices.map(arr => {
-                return arr[1]
-            })
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const getDates = (days) => {
-
-        let result = []
-
-        for (let i = 0; i < days; i++) {
-            
-            const day = moment().subtract(i, 'days').format('DD-MM-YY')
-            result.push(day)
-        }
-
-        return result.reverse()
-    }
     
     const effectHandler = async () => {
 
-        const data = await getCryptoData()
+        const data = await getCryptoData(cryptoID)
 
         const cryptoPricesPrevious = {}
-        cryptoPricesPrevious.week = await getCryptoPrice(7)
-        cryptoPricesPrevious.month = await getCryptoPrice(30)
-        cryptoPricesPrevious.threeMonths = await getCryptoPrice(90)
-        cryptoPricesPrevious.year = await getCryptoPrice(365)
+        cryptoPricesPrevious.week = await getCryptoPrice(7, cryptoID)
+        cryptoPricesPrevious.month = await getCryptoPrice(30, cryptoID)
+        cryptoPricesPrevious.threeMonths = await getCryptoPrice(90, cryptoID)
+        cryptoPricesPrevious.year = await getCryptoPrice(365, cryptoID)
         setCryptoPrices(cryptoPricesPrevious)
 
         const datesPrevious = {}
