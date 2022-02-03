@@ -138,8 +138,6 @@ const Crypto = () => {
             days -= 1
         }
 
-        console.log(days)
-
         try {
             
             const requestData = await fetch(`https://api.coingecko.com/api/v3/coins/${cryptoID}/market_chart?vs_currency=usd&days=${days}&interval=daily`)
@@ -170,7 +168,6 @@ const Crypto = () => {
     const effectHandler = async () => {
 
         const data = await getCryptoData()
-        console.log(data);
 
         const cryptoPricesPrevious = {}
         cryptoPricesPrevious.week = await getCryptoPrice(7)
@@ -186,7 +183,6 @@ const Crypto = () => {
         datesPrevious.year = getDates(365)
         setDates(datesPrevious)
 
-        console.log(dates);
         
         const maxValue = Math.max(...cryptoPricesPrevious.year)
         const minValue = Math.min(...cryptoPricesPrevious.year)

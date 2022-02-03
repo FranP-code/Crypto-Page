@@ -29,7 +29,7 @@ const CryptoGalleryItem = ({CryptoStyles, data, cryptoPrices, dates, index, cryp
 
   React.useEffect(() => {
 
-    // console.log(cryptoPrices[data.id].prices)
+    // (cryptoPrices[data.id].prices)
 
     if (!cryptoPrices[data.id]) {
 

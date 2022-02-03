@@ -79,7 +79,6 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
             let data = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=30&order=gecko_desc")
             data = await data.json()
 
-            console.log(data)
             return data
             
         } catch (error) {
@@ -92,11 +91,8 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
 
         try {
           
-            console.log(data.id)
             let requestData = await fetch(`https://api.coingecko.com/api/v3/coins/${data.id}/market_chart?vs_currency=usd&days=6&interval=daily`)
             requestData = await requestData.json()
-    
-            console.log(requestData)
 
             return requestData.prices
     
@@ -128,7 +124,6 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
         const lastDayPrices = localStorage.getItem('lastDayPrices')
         const actualDay = moment().format('DD-MM-YYYY')
 
-        console.log(actualDay)
         setDates(generateArrayOfDates())
 
         // In the case the las day prices are today, just restore them from Local Storage
@@ -136,16 +131,12 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
 
             const prices = JSON.parse(localStorage.getItem('prices'))
 
-            console.log('Prices accessed from LocalStorage')
-            console.log(lastDayPrices)
-
             setCryptosPrices(prices)
             
             return
         }
 
         // If not, extract all them from the API
-        console.log('Prices accessed from API')
 
         let cryptoPricesCopy = []
 
@@ -160,7 +151,6 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
             setLoadingURL(object.image)
 
             let requestData = await getCryptoPrices(object)
-            console.log(requestData)
 
             requestData = requestData.map(arr => {
 
@@ -168,7 +158,6 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
                 
             })
 
-            console.log(requestData)
 
             let objectResult = {}
                 objectResult[object.id] = {}
@@ -177,7 +166,6 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
         })
 
         await setCryptosPrices(await cryptoPricesCopy)
-        console.log(await cryptosPrices)
     }
     
     React.useEffect(() => {
@@ -189,15 +177,12 @@ const CryptoGallery = ({setLoading, setLoadingURL, loading}) => {
 
     React.useEffect(() => {
 
-        console.log(cryptosPrices)
-
         //Once prices are loaded into the state...
         if (cryptosPrices) {
             
             //Almacenate prices on LocalStorage
             const jsonString = JSON.stringify(cryptosPrices)
             localStorage.setItem('prices', jsonString)
-            console.log(JSON.parse(localStorage.getItem('prices')))
 
             //Almacenate actual day on LocalStorage
             const actualDay = moment().format('DD-MM-YYYY')
