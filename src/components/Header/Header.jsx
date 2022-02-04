@@ -24,7 +24,7 @@ const Header = () => {
     return (
     
         <Header>
-            <h1>Crypto Page</h1>
+            <h1>Crypto Prices</h1>
         </Header>
     )
 };
