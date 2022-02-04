@@ -4,9 +4,9 @@ This is a display of the values of the different cryptocurrencies available.
 
 It allows an overview of the most relevant cryptocurrencies, and access to a more detailed history of the value of the cryptocurrency.
 
-<!-- ## Demo
+## Demo
 
-[Here]() you can visit it -->
+[Here](https://crypto-prices-franp.netlify.app) you can visit it.
 
 ## Credits
 - [CSS Gradient - Generator, Maker, and Background](https://cssgradient.io/)
