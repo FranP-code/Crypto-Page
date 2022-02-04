@@ -28,21 +28,26 @@ const Footer = () => {
     return (
         <footer
             style={{
+
                 fontFamily: "Raleway",
                 color:"#fff",
-                marginTop: "3vh",
+
+                display: "flex",
+                alignItems: "center",
+                
                 width: "100%",
-            
-                paddingTop: "4vh",
-                paddingBottom: "4vh",
+                height: "10vh",
+                
                 paddingLeft: "3vw",
-            
+                
+                marginTop: "3vh",
+                
                 boxSizing: "border-box",
 
                 backgroundColor: "#00000036"
             }}
         >
-            Made with 💓 by <a style={{color: "#1f5ebd"}} href="https://porfolio-franp.netlify.app" rel="noreferrer" target="_blank">Francisco Pessano</a>
+            Made with 💓 by <a style={{color: "#fff023", marginLeft: "5px"}} href="https://porfolio-franp.netlify.app" rel="noreferrer" target="_blank">Francisco Pessano</a>
         </footer>
     )
 }

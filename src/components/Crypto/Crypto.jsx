@@ -20,7 +20,7 @@ const Crypto = () => {
 
     const CryptoStyles = styled(Grid)`
         
-        height: 100vh;
+        height: 87vh;
 
         header {
 
