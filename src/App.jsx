@@ -12,6 +12,7 @@ import {
 import Crypto from './components/Crypto/Crypto';
 
 import CryptoGalleryContainer from './components/CryptoGallery/CryptoGalleryContainer'
+import Footer from './components/Footer/Footer';
 
 function App() {
  
@@ -22,17 +23,17 @@ function App() {
 
   return (
     <GlobalStyles>
-
-    <Router>
-      <Switch>
-        <Route path="/crypto/:cryptoID">
-          <Crypto />
-        </Route>
-        <Route path="/">
-          <CryptoGalleryContainer />
-        </Route>
-      </Switch>
-    </Router>
+      <Router>
+        <Switch>
+          <Route path="/crypto/:cryptoID">
+            <Crypto />
+          </Route>
+          <Route path="/">
+            <CryptoGalleryContainer />
+          </Route>
+        </Switch>
+      </Router>
+      <Footer/>
     </GlobalStyles>
   );
 }

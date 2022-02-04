@@ -49,10 +49,9 @@ const CryptoGalleryItem = ({CryptoStyles, data, cryptoPrices, dates, index, cryp
         lg={4}
         md={6}
         sm={12}
-        onClick={() => {if (!loading) history.push(`/crypto/${data.id}`)}}
         style={{cursor: loading ? 'initial' : 'clicker'}}
       >
-        <Card className="card">
+        <Card className="card" onClick={() => {if (!loading) history.push(`/crypto/${data.id}`)}}>
           <CardContent
             className="container"  
           >
